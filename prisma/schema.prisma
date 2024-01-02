@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  relationMode = "prisma"
+  url          = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String   @id
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  imageId       String?
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Site      Site[]
+}
+
+model Site {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  subdomain   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String?
+
+  logo   SiteLogo? @relation(fields: [logoId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  logoId String?
+
+  links Link[]
+
+  @@index([userId])
+  @@index([logoId])
+}
+
+model SiteLogo {
+  id        String   @id @default(uuid())
+  image     String   @default("https://illustrations.popsy.co/violet/abstract-art-3.svg")
+  publicId  String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  site      Site[]
+}
+
+model Link {
+  id          String   @id @default(uuid())
+  name        String
+  url         String
+  description String
+  nsfw        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  site        Site     @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  siteId      String
+
+  @@index([siteId])
+}
