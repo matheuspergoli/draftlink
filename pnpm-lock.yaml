@@ -188,7 +188,7 @@ packages:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       jose: 5.2.0
-      oauth4webapi: 2.4.0
+      oauth4webapi: 2.4.1
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
@@ -3429,8 +3429,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /oauth4webapi@2.4.0:
-    resolution: {integrity: sha512-ZWl8ov8HeGVyc9Icl1cag76HvIcDAp23eIIT+UVGir+dEu8BMgMlvZeZwqLVd0P8DqaumH4N+QLQXN69G1QjSA==}
+  /oauth4webapi@2.4.1:
+    resolution: {integrity: sha512-qor45aeDGaGqDOizwut+Q/rZ+J6BIJvOp7U0LtHfbFhg3O7JV5lvQFDXPNqSmcUjuq/Zeq8CIII4RD0sWLOdSQ==}
     dev: false
 
   /oauth@0.9.15:
