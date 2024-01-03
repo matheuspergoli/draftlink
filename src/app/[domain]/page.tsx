@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation'
 
 import { LinkTooltip } from '@/components/link-tooltip'
+import { env } from '@/environment/env'
 import { getLinks } from '@/features/links/actions'
 import { getSite } from '@/features/site/actions'
 import { isLeft, isRight } from '@/libs/either'
 import { placeholderBlurhash } from '@/libs/utils'
 import { BlurImage } from '@/shared/components/blur-image'
 import { ThemeMode } from '@/shared/components/theme-mode'
+import { Button } from '@/shared/ui/button'
 
 export default async function Page({ params }: { params: { domain: string } }) {
 	const domain = decodeURIComponent(params.domain)
@@ -18,6 +20,9 @@ export default async function Page({ params }: { params: { domain: string } }) {
 	}
 
 	const links = await getLinks({ siteId: site.value.data.id })
+
+	const isHttp = env.VERCEL_URL ? 'https://' : 'http://'
+	const redirectLink = `app.${env.NEXT_PUBLIC_ROOT_DOMAIN}/login`
 
 	return (
 		<main className='flex h-screen flex-col'>
@@ -54,7 +59,13 @@ export default async function Page({ params }: { params: { domain: string } }) {
 			</div>
 
 			<footer className='border-t'>
-				<section className='container mx-auto flex items-center justify-center py-5'>
+				<section className='container mx-auto flex flex-wrap items-center justify-center gap-5 py-5 sm:justify-between'>
+					<Button asChild variant='outline'>
+						<a href={`${isHttp}${redirectLink}`} target='_blank' rel='noreferrer'>
+							Crie a sua DraftLink
+						</a>
+					</Button>
+
 					<p className='text-center text-gray-500'>
 						DraftLink by Matheus Pergoli © {new Date().getFullYear()}
 					</p>
