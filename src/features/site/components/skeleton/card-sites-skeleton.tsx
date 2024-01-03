@@ -18,6 +18,7 @@ export const CardSitesSkeleton = () => {
 						<div className='flex flex-col gap-3'>
 							<Skeleton className='h-10' />
 							<Skeleton className='h-10' />
+							<Skeleton className='h-10' />
 						</div>
 					</div>
 				))}

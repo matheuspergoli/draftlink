@@ -34,7 +34,7 @@ export const EditLinkSettingsForm = (props: LinkDefaultValue) => {
 		<Form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
 			<FormButton className='ml-auto w-fit gap-2' disabled={isPending}>
 				<BadgeCheck width={18} />
-				{isPending ? 'Editando...' : 'Editar'}
+				{isPending ? 'Salvando...' : 'Salvar'}
 			</FormButton>
 			<FormGroup className='flex flex-col gap-3 rounded-md border p-5'>
 				<FormLabel className='text-2xl'>Nome</FormLabel>

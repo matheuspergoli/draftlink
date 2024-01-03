@@ -35,7 +35,9 @@ export const CardLinks = async (props: CardLinksProps) => {
 				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3'>
 					{links.value.data.length === 0 && (
 						<div className='col-span-3'>
-							<p className='text-center text-xl font-semibold'>Você não tem links</p>
+							<p className='text-center text-xl font-semibold'>
+								Você ainda não criou links para esse site
+							</p>
 						</div>
 					)}
 

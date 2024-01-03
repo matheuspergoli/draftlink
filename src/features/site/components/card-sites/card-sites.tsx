@@ -70,6 +70,9 @@ export const CardSites = async () => {
 										Ir para o site
 									</a>
 								</Button>
+								<Button asChild className='w-full'>
+									<Link href={`/site/${site.id}/links`}>Ver links</Link>
+								</Button>
 								<DeleteSiteButton siteId={site.id} className='w-full'>
 									Deletar site
 								</DeleteSiteButton>

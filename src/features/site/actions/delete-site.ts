@@ -24,7 +24,9 @@ export const deleteSite = createAuthorizedAction(
 				}
 			})
 
-			await deleteFromCloudinary({ publicId: site.logo?.publicId as string })
+			if (site.logo?.publicId) {
+				await deleteFromCloudinary({ publicId: site.logo?.publicId as string })
+			}
 
 			revalidatePath('/')
 			revalidatePath(`/site/${site.id}/settings`)

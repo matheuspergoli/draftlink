@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { domain: string } }) {
 			<div className='container mx-auto my-10 w-fit'>
 				<ThemeMode />
 			</div>
-			<div className='container mx-auto flex-1'>
+			<div className='container mx-auto mb-10 flex-1'>
 				<figure className='mx-auto aspect-square h-44 w-44 overflow-hidden rounded-full border'>
 					<BlurImage
 						src={site.value.data.logo?.image as string}

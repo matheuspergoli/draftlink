@@ -59,7 +59,7 @@ export const CreateSiteForm = () => {
 			</div>
 			<FormGroup className='mt-4 flex justify-end'>
 				<FormButton type='submit' disabled={isPending}>
-					{isPending ? 'Criando...' : 'Criar'}
+					{isPending ? 'Criando...' : 'Criar site'}
 				</FormButton>
 			</FormGroup>
 		</Form>
