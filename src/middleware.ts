@@ -1,10 +1,10 @@
 import { createMiddleware } from '@/libs/middleware'
-import { LoggingMiddleware } from '@/middlewares/logging-middleware'
-import { RateLimitMiddleware } from '@/middlewares/rate-limit-middleware'
-import { RewriteMiddleware } from '@/middlewares/rewrite-middleware'
+import { loggingMiddleware } from '@/middlewares/logging-middleware'
+import { rateLimitMiddleware } from '@/middlewares/rate-limit-middleware'
+import { rewriteMiddleware } from '@/middlewares/rewrite-middleware'
 
 export default createMiddleware({
-	'*': [LoggingMiddleware, RewriteMiddleware, RateLimitMiddleware]
+	'*': [loggingMiddleware, rewriteMiddleware, rateLimitMiddleware]
 })
 
 export const config = {

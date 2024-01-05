@@ -4,7 +4,7 @@ import { getToken } from 'next-auth/jwt'
 
 import { env } from '@/environment/env'
 
-export const RewriteMiddleware = async (request: NextRequest) => {
+export const rewriteMiddleware = async (request: NextRequest) => {
 	const url = request.nextUrl
 
 	const hostname = request.headers.get('host')!
